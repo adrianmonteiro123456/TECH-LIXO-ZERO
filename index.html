@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTech - Descarte Consciente de Lixo Eletrônico</title>
+    <style>
+        /* CSS Reset e Estilos Globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: #2ecc71;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .hero {
+            padding: 50px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #2ecc71;
+            color: white;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        section {
+            padding: 50px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2ecc71;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background: #ecf0f1;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .progress-bar {
+            height: 30px;
+            background: #2ecc71;
+            border-radius: 10px;
+            width: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .item-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .item-icon {
+            width: 40px;
+            height: 40px;
+            background: #2ecc71;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .yes {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        
+        .no {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .impact-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .impact-images img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        
+        .detector {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .detector-result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .qr-game {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .gallery img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #2ecc71;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+        
+        .chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+        }
+        
+        .chat-header {
+            background: #2ecc71;
+            color: white;
+            padding: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .chat-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .chat-input {
+            padding: 10px;
+            border-top: 1px solid #eee;
+            display: flex;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .chat-input button {
+            margin-left: 10px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0 15px;
+            cursor: pointer;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 80%;
+        }
+        
+        .bot-message {
+            background: #f1f1f1;
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background: #2ecc71;
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>EcoTech</h1>
+            <p>Transforme seu lixo em atitude consciente</p>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Transforme seu lixo em atitude consciente</h1>
+            <p>Descarte corretamente seus eletrônicos e ajude a preservar o meio ambiente</p>
+            <a href="#pontos-descarte" class="btn">Ver pontos de descarte</a>
+        </div>
+    </section>
+    
+    <section id="como-descartar">
+        <div class="container">
+            <h2>Como Descartar Corretamente</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1523206489230-c012c64b2b48?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Celular">
+                    <h3>Celulares</h3>
+                    <p>Remova o chip e apague todos os dados pessoais. Leve a um ponto de coleta especializado.</p>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Carregadores">
+                    <h3>Carregadores</h3>
+                    <p>Não descarte no lixo comum. Mesmo quebrados, podem ser reciclados em pontos específicos.</p>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1603732551658-5fabbafa84eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Baterias">
+                    <h3>Baterias</h3>
+                    <p>Armazene em local seco e isolado. Nunca perfure ou exponha ao calor antes do descarte.</p>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80" alt="Notebooks">
+                    <h3>Notebooks</h3>
+                    <p>Faça backup e remova dados sensíveis. Leve a centros de reciclagem autorizados.</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 40px; text-align: center;">Dicas de Armazenamento em Casa</h3>
+            <div class="grid" style="margin-top: 20px;">
+                <div class="card">
+                    <h4>Embalagem Segura</h4>
+                    <p>Embrulhe pilhas e baterias em plástico bolha ou sacos plásticos para evitar curtos-circuitos.</p>
+                </div>
+                <div class="card">
+                    <h4>Local Adequado</h4>
+                    <p>Guarde em local fresco e seco, longe de umidade e fontes de calor.</p>
+                </div>
+                <div class="card">
+                    <h4>Separação</h4>
+                    <p>Mantenha diferentes tipos de eletrônicos separados para facilitar o descarte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="pontos-descarte">
+        <div class="container">
+            <h2>Pontos de Descarte</h2>
+            <div id="map" style="height: 400px; background: #eee; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px;">
+                <p>Mapa interativo com pontos de coleta será exibido aqui</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h3>São Paulo - Centro</h3>
+                    <p>Rua da Consolação, 123</p>
+                    <p>Segunda a Sexta: 9h às 18h</p>
+                    <a href="https://www.google.com/maps" target="_blank" class="btn" style="margin-top: 10px; padding: 5px 15px;">Como chegar</a>
+                </div>
+                <div class="card">
+                    <h3>São Paulo - Zona Sul</h3>
+                    <p>Avenida Paulista, 1000</p>
+                    <p>Terça a Sábado: 10h às 17h</p>
+                    <a href="https://www.google.com/maps" target="_blank" class="btn" style="margin-top: 10px; padding: 5px 15px;">Como chegar</a>
+                </div>
+                <div class="card">
+                    <h3>São Paulo - Zona Leste</h3>
+                    <p>Rua Tatuapé, 456</p>
+                    <p>Quarta a Domingo: 8h às 16h</p>
+                    <a href="https://www.google.com/maps" target="_blank" class="btn" style="margin-top: 10px; padding: 5px 15px;">Como chegar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="lixo-coletado">
+        <div class="container">
+            <h2>Nível de Lixo Eletrônico Coletado</h2>
+            <p style="text-align: center;">Ajude-nos a alcançar nossa meta mensal de 1000kg</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar">213kg</div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 20px;">Este mês já coletamos <strong>213kg</strong> de lixo eletrônico!</p>
+        </div>
+    </section>
+    
+    <section id="itens-aceitos">
+        <div class="container">
+            <h2>Itens Aceitos</h2>
+            <div class="item-list">
+                <div class="card">
+                    <div class="item">
+                        <div class="item-icon">✓</div>
+                        <span class="yes">CELULARES</span>
+                    </div>
+                    <div class="item">
+                        <div class="item-icon">✓</div>
+                        <span class="yes">TABLETS</span>
+                    </div>
+                    <div class="item">
+                        <div class="item-icon">✓</div>
+                        <span class="yes">CABOS</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="item">
+                        <div class="item-icon">✓</div>
+                        <span class="yes">MOUSES</span>
+                    </div>
+                    <div class="item">
+                        <div class="item-icon">✓</div>
+                        <span class="yes">TECLADOS</span>
+                    </div>
+                    <div class="item">
+                        <div class="item-icon">✓</div>
+                        <span class="yes">BATERIAS</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="item">
+                        <div class="item-icon">✗</div>
+                        <span class="no">PILHAS COMUNS</span>
+                    </div>
+                    <div class="item">
+                        <div class="item-icon">✗</div>
+                        <span class="no">LÂMPADAS</span>
+                    </div>
+                    <div class="item">
+                        <div class="item-icon">✗</div>
+                        <span class="no">LIXO DOMÉSTICO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="impacto-ambiental">
+        <div class="container">
+            <h2>Impacto Ambiental</h2>
+            <div class="impact-images">
+                <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Rio contaminado">
+                <img src="https://images.unsplash.com/photo-1584473457409-ceb1e1b84848?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Lixão eletrônico">
+            </div>
+            
+            <div class="grid" style="margin-top: 30px;">
+                <div class="card">
+                    <h3>Contaminação da Água</h3>
+                    <p>1 celular descartado incorretamente pode contaminar até <strong>100.000 litros de água</strong> com metais pesados.</p>
+                </div>
+                <div class="card">
+                    <h3>Tempo de Decomposição</h3>
+                    <p>Componentes eletrônicos podem levar <strong>até 500 anos</strong> para se decompor na natureza.</p>
+                </div>
+                <div class="card">
+                    <h3>Metais Pesados</h3>
+                    <p>Dispositivos contêm chumbo, mercúrio e cádmio que podem causar doenças graves em humanos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="detector">
+        <div class="container">
+            <h2>Detector de Lixo Eletrônico</h2>
+            <div class="detector">
+                <p>Não sabe se seu item é lixo eletrônico? Envie uma foto e nós identificamos para você!</p>
+                
+                <input type="file" id="file-upload" accept="image/*" style="margin: 20px 0;">
+                <button onclick="analyzeImage()" class="btn">Analisar Imagem</button>
+                
+                <div id="detector-result" class="detector-result">
+                    <h3>Resultado:</h3>
+                    <p id="result-text"></p>
+                    <div id="result-info" style="margin-top: 15px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="jogo">
+        <div class="container">
+            <h2>Tech Lixo Zero</h2>
+            <div class="qr-game">
+                <p>Escaneie o QR Code nas lixeiras eletrônicas para ganhar pontos e prêmios!</p>
+                
+                <div class="qr-code">
+                    QR Code
+                </div>
+                
+                <p>Ou simule agora:</p>
+                <button onclick="simulateQRScan()" class="btn">Simular Escaneamento</button>
+                
+                <div id="game-feedback" style="margin-top: 20px; display: none;">
+                    <p>Você reciclou no ponto <strong>São Paulo - Centro</strong>. Boa! <strong>+50 pontos</strong>!</p>
+                    <p>Seu total atual: <strong>150 pontos</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="galeria">
+        <div class="container">
+            <h2>Heróis do Planeta 🌱</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Obrigado por sua atitude consciente!</p>
+            
+            <div class="gallery">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Reciclador">
+                <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Reciclador">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Reciclador">
+                <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80" alt="Reciclador">
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="showJoinForm()" class="btn">Quero aparecer aqui</button>
+            </div>
+            
+            <div id="join-form" style="display: none; margin-top: 30px; text-align: center;">
+                <h3>Envie sua foto e ajude a inspirar outras pessoas!</h3>
+                <input type="file" accept="image/*" style="margin: 20px 0;">
+                <div>
+                    <input type="checkbox" id="agree-terms">
+                    <label for="agree-terms">Concordo em divulgar minha imagem para esta campanha</label>
+                </div>
+                <button class="btn" style="margin-top: 15px;">Enviar</button>
+            </div>
+        </div>
+    </section>
+    
+    <section id="por-que-separar">
+        <div class="container">
+            <h2>Por que separar o lixo eletrônico?</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Contaminação por Metais Pesados</h3>
+                    <p>Dispositivos eletrônicos contêm chumbo, mercúrio e cádmio que podem contaminar o solo e a água, causando doenças graves.</p>
+                </div>
+                <div class="card">
+                    <h3>Risco de Explosões</h3>
+                    <p>Baterias e pilhas podem explodir quando descartadas incorretamente, especialmente em ambientes quentes ou úmidos.</p>
+                </div>
+                <div class="card">
+                    <h3>Poluição do Solo e Água</h3>
+                    <p>Componentes químicos podem vazar e contaminar lençóis freáticos, afetando toda a cadeia alimentar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="historia-item">
+        <div class="container">
+            <h2>História do Seu Aparelho</h2>
+            <div class="card" style="text-align: center; padding: 30px;">
+                <p>Após o descarte, seu aparelho terá um novo destino:</p>
+                
+                <div id="item-story" style="margin-top: 20px;">
+                    <p>Selecione um item para ver seu impacto:</p>
+                    <select id="item-select" style="padding: 10px; width: 100%; max-width: 300px; margin: 15px 0;">
+                        <option value="">-- Selecione um item --</option>
+                        <option value="celular">Celular</option>
+                        <option value="notebook">Notebook</option>
+                        <option value="bateria">Bateria</option>
+                        <option value="carregador">Carregador</option>
+                    </select>
+                    <button onclick="showItemStory()" class="btn">Mostrar História</button>
+                </div>
+                
+                <div id="story-result" style="margin-top: 20px; display: none;">
+                    <h3 id="story-title"></h3>
+                    <p id="story-content"></p>
+                    <p id="story-impact"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="chatbot" onclick="toggleChat()">
+        🤖
+    </div>
+    
+    <div class="chat-window" id="chat-window">
+        <div class="chat-header">
+            <span>TecBot - Assistente de Reciclagem</span>
+            <span onclick="toggleChat()" style="cursor: pointer;">×</span>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="message bot-message">
+                Olá! Sou o TecBot. Posso te ajudar a descartar seu lixo eletrônico corretamente. Qual item você quer descartar?
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Digite sua mensagem..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>EcoTech - Transformando lixo eletrônico em consciência ambiental</p>
+            <p>© 2023 Todos os direitos reservados</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Simulação de progresso
+        function updateProgress() {
+            const progressBar = document.getElementById('progress-bar');
+            let progress = 21.3; // 213kg de 1000kg
+            
+            // Animar a barra de progresso
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= progress) {
+                    clearInterval(interval);
+                } else {
+                    width++;
+                    progressBar.style.width = width + '%';
+                }
+            }, 20);
+        }
+        
+        // Detector de lixo eletrônico
+        function analyzeImage() {
+            const fileInput = document.getElementById('file-upload');
+            const resultDiv = document.getElementById('detector-result');
+            const resultText = document.getElementById('result-text');
+            const resultInfo = document.getElementById('result-info');
+            
+            if (fileInput.files.length === 0) {
+                alert('Por favor, selecione uma imagem primeiro.');
+                return;
+            }
+            
+            // Simulação de análise (em um MVP real, isso seria feito com uma API de IA)
+            const items = [
+                { name: 'Celular', category: 'e-lixo', info: 'Este é um dispositivo eletrônico que contém metais pesados e deve ser descartado em pontos de coleta específicos.' },
+                { name: 'Carregador', category: 'e-lixo', info: 'Apesar de não conter baterias, este item possui componentes eletrônicos que podem ser reciclados.' },
+                { name: 'Bateria de Notebook', category: 'e-lixo', info: 'Item perigoso! Contém produtos químicos tóxicos. Nunca descarte no lixo comum.' },
+                { name: 'Garrafa Plástica', category: 'não e-lixo', info: 'Este item não é lixo eletrônico. Descarte na coleta seletiva de plásticos.' }
+            ];
+            
+            // Seleciona um resultado aleatório para simulação
+            const randomItem = items[Math.floor(Math.random() * items.length)];
+            
+            resultText.textContent = `Identificamos: ${randomItem.name} (${randomItem.category === 'e-lixo' ? 'É lixo eletrônico' : 'Não é lixo eletrônico'})`;
+            
+            if (randomItem.category === 'e-lixo') {
+                resultDiv.style.background = '#e3f7eb';
+                resultInfo.innerHTML = `
+                    <p>${randomItem.info}</p>
+                    <p><strong>Como descartar:</strong> Leve a um dos <a href="#pontos-descarte">nossos pontos de coleta</a>.</p>
+                `;
+            } else {
+                resultDiv.style.background = '#fff3f3';
+                resultInfo.innerHTML = `
+                    <p>${randomItem.info}</p>
+                    <p>Este item pode ser descartado no lixo reciclável comum.</p>
+                `;
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        // Jogo com QR Code
+        function simulateQRScan() {
+            const feedbackDiv = document.getElementById('game-feedback');
+            feedbackDiv.style.display = 'block';
+            
+            // Animação simples
+            feedbackDiv.style.opacity = '0';
+            let opacity = 0;
+            const fadeIn = setInterval(() => {
+                opacity += 0.1;
+                feedbackDiv.style.opacity = opacity;
+                if (opacity >= 1) clearInterval(fadeIn);
+            }, 50);
+        }
+        
+        // Galeria de recicladores
+        function showJoinForm() {
+            const joinForm = document.getElementById('join-form');
+            if (joinForm.style.display === 'none') {
+                joinForm.style.display = 'block';
+            } else {
+                joinForm.style.display = 'none';
+            }
+        }
+        
+        // História do item descartado
+        function showItemStory() {
+            const itemSelect = document.getElementById('item-select');
+            const storyResult = document.getElementById('story-result');
+            const storyTitle = document.getElementById('story-title');
+            const storyContent = document.getElementById('story-content');
+            const storyImpact = document.getElementById('story-impact');
+            
+            if (itemSelect.value === '') {
+                alert('Por favor, selecione um item.');
+                return;
+            }
+            
+            const stories = {
+                celular: {
+                    title: 'A Jornada de um Celular',
+                    content: 'Seu celular será desmontado por especialistas. Componentes como tela, bateria e placas serão separados para reciclagem específica.',
+                    impact: '1 celular reciclado evita a contaminação de 100.000 litros de água e recupera metais valiosos como ouro e prata.'
+                },
+                notebook: {
+                    title: 'O Fim Útil de um Notebook',
+                    content: 'Notebooks são complexos e requerem desmontagem cuidadosa. Suas partes serão classificadas: plásticos, metais, componentes eletrônicos.',
+                    impact: 'A reciclagem de 1 notebook economiza energia equivalente a 3 meses de uso de uma lâmpada LED.'
+                },
+                bateria: {
+                    title: 'Bateria: Perigo Controlado',
+                    content: 'Baterias são tratadas em ambientes controlados. Seus componentes tóxicos são neutralizados e metais são recuperados.',
+                    impact: '1 bateria de íon-lítio contamina 50.000 litros de água se descartada incorretamente.'
+                },
+                carregador: {
+                    title: 'Carregador: Mais Vida Útil',
+                    content: 'Carregadores são testados. Os funcionais são doados, os quebrados têm seus cabos e componentes separados para reciclagem.',
+                    impact: 'O cobre recuperado de 100 carregadores pode fazer novos 50 metros de fios elétricos.'
+                }
+            };
+            
+            const selectedStory = stories[itemSelect.value];
+            
+            storyTitle.textContent = selectedStory.title;
+            storyContent.textContent = selectedStory.content;
+            storyImpact.textContent = selectedStory.impact;
+            storyResult.style.display = 'block';
+        }
+        
+        // Chatbot
+        function toggleChat() {
+            const chatWindow = document.getElementById('chat-window');
+            if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+                chatWindow.style.display = 'flex';
+            } else {
+                chatWindow.style.display = 'none';
+            }
+        }
+        
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const chatBody = document.getElementById('chat-body');
+            
+            if (userInput.value.trim() === '') return;
+            
+            // Adiciona mensagem do usuário
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.textContent = userInput.value;
+            chatBody.appendChild(userMessage);
+            
+            // Simula resposta do bot
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'message bot-message';
+                
+                const userText = userInput.value.toLowerCase();
+                
+                if (userText.includes('celular') || userText.includes('telefone')) {
+                    botMessage.innerHTML = 'Para descartar celulares:<br>1. Remova o chip SIM<br>2. Apague todos os dados<br>3. Leve a um <a href="#pontos-descarte">ponto de coleta</a><br>Posso ajudar em algo mais?';
+                } else if (userText.includes('bateria')) {
+                    botMessage.innerHTML = 'Baterias são itens perigosos!<br>Armazene em local seco e leve a um <a href="#pontos-descarte">ponto de coleta especializado</a>. Nunca descarte no lixo comum.';
+                } else if (userText.includes('notebook') || userText.includes('laptop')) {
+                    botMessage.innerHTML = 'Notebooks contêm muitos componentes recicláveis:<br>1. Faça backup dos dados<br>2. Remova baterias se possível<br>3. Leve a um <a href="#pontos-descarte">centro de reciclagem</a>';
+                } else if (userText.includes('carregador')) {
+                    botMessage.textContent = 'Carregadores podem ser reciclados! Mesmo quebrados, leve a um ponto de coleta de e-lixo. Cabos contêm cobre valioso.';
+                } else {
+                    botMessage.innerHTML = 'Posso te ajudar com informações sobre descarte de:<br>- Celulares<br>- Baterias<br>- Notebooks<br>- Carregadores<br>Qual item você quer descartar?';
+                }
+                
+                chatBody.appendChild(botMessage);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 500);
+            
+            userInput.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+        
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        // Inicialização
+        window.onload = function() {
+            updateProgress();
+        };
+    </script>
+</body>
+</html>
